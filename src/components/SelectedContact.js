@@ -22,47 +22,47 @@ const SelectedContact = ({ selectedContact }) => {
   return (
     <StyledSelectedContact>
       <p>
-        <div>Firstname </div>
-        <div>{firstname}</div>
+        <span style={{fontWeight: "bold", textTransform: "Capitalize"}}>Firstname </span>
+        <span>{firstname}</span>
       </p>
       <p>
-        <div>Lastname </div>
+        <span style={{fontWeight: "bold", textTransform: "Capitalize"}}>Lastname </span>
         {lastname}
       </p>
       <p>
-        <div>Middlename </div>
+        <span style={{fontWeight: "bold", textTransform: "Capitalize"}}>Middlename </span>
         {middlename}
       </p>
       <p>
-        <div>Facebook </div>
+        <span style={{fontWeight: "bold", textTransform: "Capitalize"}}>Facebook </span>
         {facebook}
       </p>
       <p>
-        <div>Nickname </div>
+        <span style={{fontWeight: "bold", textTransform: "Capitalize"}}>Nickname </span>
         {nickname}
       </p>
       <p>
-        <div>Phone </div>
+        <span style={{fontWeight: "bold", textTransform: "Capitalize"}}>Phone </span>
         {phoneNo}
       </p>
       <p>
-        <div>Firstname </div>
+        <span style={{fontWeight: "bold", textTransform: "Capitalize"}}>Firstname </span>
         {officeAddress}
       </p>
       <p>
-        <div>Firstname </div>
+        <span style={{fontWeight: "bold", textTransform: "Capitalize"}}>Firstname </span>
         {twitter}
       </p>
       <p>
-        <div>Firstname </div>
+        <span style={{fontWeight: "bold", textTransform: "Capitalize"}}>Firstname </span>
         {homeAddress}
       </p>
       <p>
-        <div>Firstname </div>
+        <span style={{fontWeight: "bold", textTransform: "Capitalize"}}>Firstname </span>
         {linkedIn}
       </p>
       <p>
-        <div>Firstname </div>
+        <span style={{fontWeight: "bold", textTransform: "Capitalize"}}>Firstname </span>
         {relationship}
       </p>
       <Button />
