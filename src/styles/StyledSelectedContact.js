@@ -4,9 +4,10 @@ import styled from 'styled-components';
 const StyledSelectedContact = styled.section`
   background-color: #eee;
   padding: 2rem 2rem;
-  margin-top: 4rem;
+  margin-top: -4rem;
   margin-right: 5rem;
   border-radius: 1rem;
+  margin-bottom: 3rem;
 
   p {
     display: flex;

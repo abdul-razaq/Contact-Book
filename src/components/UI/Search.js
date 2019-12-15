@@ -5,9 +5,13 @@ import StyledSearch from '../../styles/StyledSearch';
 
 const Search = () => {
 
+  const onSearchInputHandler = () => {
+
+  }
+
   return (
     <>
-      <StyledSearch type="search" name="filter" placeholder="Search contact..." />
+      <StyledSearch type="search" name="filter" placeholder="Search contact..." onChange={onSearchInputHandler} />
     </>
   );
 }

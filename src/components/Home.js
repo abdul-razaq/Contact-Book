@@ -8,15 +8,21 @@ import SideBar from '../components/UI/SideBar';
 import AllContacts from '../components/AllContacts';
 import SelectedContact from '../components/SelectedContact';
 import StyledGrid from '../styles/StyledGrid';
+import Button from './UI/Button';
 
 
-const Home = ({contacts, contactHandlerCallback, selectedContact}) => {
-  
+const Home = ({ contacts, contactHandlerCallback, selectedContact }) => {
   return (
     <>
       <Header />
+      <div style={{ marginTop: "4rem", marginLeft: "7rem"}}>
+        <Button action="add" name="Add new contact" />
+      </div>
       <StyledGrid>
-        <SideBar contacts={contacts} contactHandlerCallback={contactHandlerCallback}>
+        <SideBar
+          contacts={contacts}
+          contactHandlerCallback={contactHandlerCallback}
+        >
           <Search />
           <AllContacts />
         </SideBar>
@@ -26,11 +32,10 @@ const Home = ({contacts, contactHandlerCallback, selectedContact}) => {
   );
 };
 
-
 Home.propTypes = {
   contacts: PropTypes.array.isRequired,
   contactHandlerCallback: PropTypes.func.isRequired,
-  selectedContact: PropTypes.object.isRequired
-}
+  selectedContact: PropTypes.object.isRequired,
+};
 
 export default Home;

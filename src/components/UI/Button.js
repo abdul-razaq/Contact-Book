@@ -1,11 +1,20 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
+import StyledButton from '../../styles/StyledButton';
 
 
-const Button = () => {
-
+const Button = ({ action, name }) => {
   return (
-    <button type="button">Button</button>
-  );  
-}
+    <StyledButton action={action} type="button">
+      {name}
+    </StyledButton>
+  );
+};
+
+Button.propTypes = {
+  action: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+};
 
 export default Button;

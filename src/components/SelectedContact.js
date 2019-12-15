@@ -65,8 +65,8 @@ const SelectedContact = ({ selectedContact }) => {
         <span style={{fontWeight: "bold", textTransform: "Capitalize"}}>Firstname </span>
         {relationship}
       </p>
-      <Button />
-      <Button />
+      <Button action="edit" name="edit" />
+      <Button action="delete" name="delete" />
     </StyledSelectedContact>
   );
 };
