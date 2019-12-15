@@ -4,7 +4,7 @@ import styled from 'styled-components';
 const StyledSidebar = styled.aside`
 
   background-color: #333;
-  margin-top: 6rem;
+  margin-top: -54rem;
   border-radius: 1rem;
   padding: 0 3rem;
 

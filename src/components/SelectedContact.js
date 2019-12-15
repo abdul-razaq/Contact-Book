@@ -21,17 +21,50 @@ const SelectedContact = ({ selectedContact }) => {
   } = selectedContact;
   return (
     <StyledSelectedContact>
-      <p>{firstname}</p>
-      <p>{lastname}</p>
-      <p>{middlename}</p>
-      <p>{facebook}</p>
-      <p>{nickname}</p>
-      <p>{phoneNo}</p>
-      <p>{officeAddress}</p>
-      <p>{twitter}</p>
-      <p>{homeAddress}</p>
-      <p>{linkedIn}</p>
-      <p>{relationship}</p>
+      <p>
+        <div>Firstname </div>
+        <div>{firstname}</div>
+      </p>
+      <p>
+        <div>Lastname </div>
+        {lastname}
+      </p>
+      <p>
+        <div>Middlename </div>
+        {middlename}
+      </p>
+      <p>
+        <div>Facebook </div>
+        {facebook}
+      </p>
+      <p>
+        <div>Nickname </div>
+        {nickname}
+      </p>
+      <p>
+        <div>Phone </div>
+        {phoneNo}
+      </p>
+      <p>
+        <div>Firstname </div>
+        {officeAddress}
+      </p>
+      <p>
+        <div>Firstname </div>
+        {twitter}
+      </p>
+      <p>
+        <div>Firstname </div>
+        {homeAddress}
+      </p>
+      <p>
+        <div>Firstname </div>
+        {linkedIn}
+      </p>
+      <p>
+        <div>Firstname </div>
+        {relationship}
+      </p>
       <Button />
       <Button />
     </StyledSelectedContact>
