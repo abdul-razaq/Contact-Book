@@ -5,15 +5,23 @@
 import React from 'react';
 
 
-const AllContacts = ({ contacts, contactHandlerCallback, searchValue }) => {
+const AllContacts = ({ contacts, contactHandlerCallback, searchedContact }) => {
 
   const selectedContact = contactId => {
     contactHandlerCallback(contactId);
   };
 
-  return contacts.map(contact => {
+  let contactsToShow = null;
 
-    const contactId = `${contact.firstname} ${contact.lastname}`;
+  if (searchedContact.length > 0) {
+    contactsToShow = searchedContact; 
+  } else {
+    contactsToShow = contacts;
+  }
+
+  return contactsToShow.map(({firstname, lastname}) => {
+
+    const contactId = `${firstname} ${lastname}`;
 
     return (
       <p key={contactId} onClick={() => selectedContact(contactId)}>

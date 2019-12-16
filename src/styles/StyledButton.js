@@ -4,12 +4,12 @@ import styled from 'styled-components';
 const StyledButton = styled.button`
   background-color: ${({ action }) =>
     action === 'edit'
-      ? '#333'
+      ? '#22788f'
       : action === 'delete'
-      ? 'red'
+      ? '#f21a00'
       : action === 'cancel'
       ? 'purple'
-      : 'green'};
+      : '#5dde30'};
   color: #fff;
   padding: 1rem 4rem;
   text-transform: uppercase;
@@ -28,12 +28,12 @@ const StyledButton = styled.button`
   &:hover {
     background-color: ${({ action }) =>
       action === 'edit'
-        ? '#444'
+        ? '#1b6174'
         : action === 'delete'
-        ? 'tomato'
+        ? '#bf1500'
         : action === 'cancel'
         ? 'purple'
-        : 'lightgreen'};
+        : '#41ae1c'};
     transform: translateY(-1px);
   }
 

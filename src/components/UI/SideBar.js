@@ -13,6 +13,7 @@ const SideBar = ({
   contactHandlerCallback,
   onSearchInputHandler,
   searchValue,
+  searchedContact
 }) => {
   return (
     <StyledSidebar>
@@ -22,6 +23,7 @@ const SideBar = ({
       />
       <StyledAllContacts>
         <AllContacts
+          searchedContact={searchedContact}
           contacts={contacts}
           contactHandlerCallback={contactHandlerCallback}
         />
@@ -35,6 +37,7 @@ SideBar.propTypes = {
   contactHandlerCallback: PropTypes.func.isRequired,
   onSearchInputHandler: PropTypes.func.isRequired,
   searchValue: PropTypes.string.isRequired,
+  searchedContact: PropTypes.array.isRequired,
 };
 
 export default SideBar;

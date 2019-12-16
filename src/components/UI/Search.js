@@ -4,24 +4,23 @@ import PropTypes from 'prop-types';
 
 import StyledSearch from '../../styles/StyledSearch';
 
-
 const Search = ({ onSearchInputHandler, searchValue }) => {
-
-  // const sendSearchValue = event => {
-  //   onSearchInputHandler(event.target.value)
-  // }
-
   return (
     <>
-      <StyledSearch type="search" name="filter" placeholder="Search contact..." value={searchValue} onChange={event => onSearchInputHandler(event.target.value)} />
+      <StyledSearch
+        type="search"
+        name="filter"
+        placeholder="Search contact..."
+        value={searchValue}
+        onChange={event => onSearchInputHandler(event.target.value)}
+      />
     </>
   );
-}
-
+};
 
 Search.propTypes = {
   onSearchInputHandler: PropTypes.func,
-  searchValue: PropTypes.string
-}
+  searchValue: PropTypes.string,
+};
 
 export default Search;

@@ -23,6 +23,7 @@
     ],
     "rules": {
         "react/jsx-filename-extension": 0,
-        "import/no-useless-path-segments": 0
+        "import/no-useless-path-segments": 0,
+        "semi": 1
     }
 }

@@ -7,9 +7,7 @@ import Container from '../styles/Container';
 import Home from '../components/Home';
 
 const App = () => {
-
   // STATES
-
   const [contacts, setContacts] = useState([
     {
       firstname: 'John',
@@ -54,40 +52,27 @@ const App = () => {
   const [selectedContact, setSelectedContact] = useState(contacts[0]);
 
   const [searchValue, setSearchValue] = useState('');
+  
+  const [searchedContact, setSearchedContact] = useState([]);
 
   // EVENT HANDLERS
-
   const selectedContactHandler = contactId => {
-    // const select = contacts.filter(contact => {
-    //   return `${contact.firstname} ${contact.lastname}` === contactId;
-    // });
-    // setSelectedContact(select[0]);
-    let select = null
-    if (searchValue !== '') {
-      const [firstName, lastName] = searchValue.split('');
-      console.log(firstName, lastName);
-      select = contacts.filter(contact => {
-        return `${contact.firstname} ${contact.lastname}` === searchValue;
-      });
-      setSelectedContact(select[0]);
-    }
-
-    if (!searchValue) {
-      select = contacts.filter(contact => {
-        return `${contact.firstname} ${contact.lastname}` === contactId;
-      });
-      setSelectedContact(select[0]);
-    }
-    console.log(select);
+    const select = contacts.filter(contact => {
+      return `${contact.firstname} ${contact.lastname}` === contactId;
+    });
+    setSelectedContact(select[0]);
   };
-  // console.log(contacts)
-
 
   const onSearchInputHandler = searchInput => {
     setSearchValue(searchInput);
+    const matchedContact = contacts.filter(
+      ({ firstname, lastname }) =>
+        `${firstname} ${lastname}` === searchInput.trim()
+    );
+    setSearchedContact(matchedContact);
   };
 
-  
+  // RETURNED JSX
   return (
     <Container>
       <GlobalStyle />
@@ -97,6 +82,7 @@ const App = () => {
           exact
           render={() => (
             <Home
+              searchedContact={searchedContact}
               contacts={contacts}
               contactHandlerCallback={selectedContactHandler}
               selectedContact={selectedContact}

@@ -15,7 +15,8 @@ const Home = ({
   contactHandlerCallback,
   selectedContact,
   onSearchInputHandler,
-  searchValue
+  searchValue,
+  searchedContact
 }) => {
   return (
     <>
@@ -25,6 +26,7 @@ const Home = ({
       </div>
       <StyledGrid>
         <SideBar
+          searchedContact={searchedContact}
           contacts={contacts}
           contactHandlerCallback={contactHandlerCallback}
           onSearchInputHandler={onSearchInputHandler}
@@ -44,7 +46,8 @@ Home.propTypes = {
   contactHandlerCallback: PropTypes.func.isRequired,
   selectedContact: PropTypes.object.isRequired,
   onSearchInputHandler: PropTypes.func.isRequired,
-  searchValue: PropTypes.string.isRequired
+  searchValue: PropTypes.string.isRequired,
+  searchedContact: PropTypes.array.isRequired
 };
 
 export default Home;
