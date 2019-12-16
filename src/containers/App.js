@@ -67,7 +67,7 @@ const App = () => {
     setSearchValue(searchInput);
     const matchedContact = contacts.filter(
       ({ firstname, lastname }) =>
-        `${firstname} ${lastname}` === searchInput.trim()
+        `${firstname} ${lastname}`.toLowerCase() === searchInput.trim().toLowerCase()
     );
     setSearchedContact(matchedContact);
   };
