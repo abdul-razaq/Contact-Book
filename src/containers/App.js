@@ -7,6 +7,9 @@ import Container from '../styles/Container';
 import Home from '../components/Home';
 
 const App = () => {
+
+  // STATES
+
   const [contacts, setContacts] = useState([
     {
       firstname: 'John',
@@ -50,18 +53,58 @@ const App = () => {
   ]);
   const [selectedContact, setSelectedContact] = useState(contacts[0]);
 
-  const selectedContactHandler = (contactId) => {
-    const select = contacts.filter(contact => {
-      return `${contact.firstname} ${contact.lastname}` === contactId;
-    })
-    setSelectedContact(select[0]);
-  }
+  const [searchValue, setSearchValue] = useState('');
+
+  // EVENT HANDLERS
+
+  const selectedContactHandler = contactId => {
+    // const select = contacts.filter(contact => {
+    //   return `${contact.firstname} ${contact.lastname}` === contactId;
+    // });
+    // setSelectedContact(select[0]);
+    let select = null
+    if (searchValue !== '') {
+      const [firstName, lastName] = searchValue.split('');
+      console.log(firstName, lastName);
+      select = contacts.filter(contact => {
+        return `${contact.firstname} ${contact.lastname}` === searchValue;
+      });
+      setSelectedContact(select[0]);
+    }
+
+    if (!searchValue) {
+      select = contacts.filter(contact => {
+        return `${contact.firstname} ${contact.lastname}` === contactId;
+      });
+      setSelectedContact(select[0]);
+    }
+    console.log(select);
+  };
+  // console.log(contacts)
+
+
+  const onSearchInputHandler = searchInput => {
+    setSearchValue(searchInput);
+  };
+
   
   return (
     <Container>
       <GlobalStyle />
       <Switch>
-        <Route path="/" exact render={() => <Home contacts={contacts} contactHandlerCallback={selectedContactHandler} selectedContact={selectedContact} />} />
+        <Route
+          path="/"
+          exact
+          render={() => (
+            <Home
+              contacts={contacts}
+              contactHandlerCallback={selectedContactHandler}
+              selectedContact={selectedContact}
+              onSearchInputHandler={onSearchInputHandler}
+              searchValue={searchValue}
+            />
+          )}
+        />
         <Route path="/about" exact render={() => <div>About</div>} />
       </Switch>
     </Container>

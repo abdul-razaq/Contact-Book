@@ -10,18 +10,25 @@ import SelectedContact from '../components/SelectedContact';
 import StyledGrid from '../styles/StyledGrid';
 import Button from './UI/Button';
 
-
-const Home = ({ contacts, contactHandlerCallback, selectedContact }) => {
+const Home = ({
+  contacts,
+  contactHandlerCallback,
+  selectedContact,
+  onSearchInputHandler,
+  searchValue
+}) => {
   return (
     <>
       <Header />
-      <div style={{ marginTop: "4rem", marginLeft: "7rem"}}>
+      <div style={{ marginTop: '4rem', marginLeft: '7rem' }}>
         <Button action="add" name="Add new contact" />
       </div>
       <StyledGrid>
         <SideBar
           contacts={contacts}
           contactHandlerCallback={contactHandlerCallback}
+          onSearchInputHandler={onSearchInputHandler}
+          searchValue={searchValue}
         >
           <Search />
           <AllContacts />
@@ -36,6 +43,8 @@ Home.propTypes = {
   contacts: PropTypes.array.isRequired,
   contactHandlerCallback: PropTypes.func.isRequired,
   selectedContact: PropTypes.object.isRequired,
+  onSearchInputHandler: PropTypes.func.isRequired,
+  searchValue: PropTypes.string.isRequired
 };
 
 export default Home;

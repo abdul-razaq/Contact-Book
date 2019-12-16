@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-one-expression-per-line */
 /* eslint-disable react/forbid-prop-types */
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -21,6 +22,7 @@ const SelectedContact = ({ selectedContact }) => {
   } = selectedContact;
   return (
     <StyledSelectedContact>
+      <h3>Contact Details for {`"${firstname} ${lastname}" a.k.a (${nickname})`} </h3>
       <p>
         <span style={{fontWeight: "bold", textTransform: "Capitalize"}}>Firstname </span>
         <span>{firstname}</span>

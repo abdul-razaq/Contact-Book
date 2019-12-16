@@ -5,7 +5,7 @@
 import React from 'react';
 
 
-const AllContacts = ({ contacts, contactHandlerCallback }) => {
+const AllContacts = ({ contacts, contactHandlerCallback, searchValue }) => {
 
   const selectedContact = contactId => {
     contactHandlerCallback(contactId);

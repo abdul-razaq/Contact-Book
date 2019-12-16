@@ -9,6 +9,12 @@ const StyledSelectedContact = styled.section`
   border-radius: 1rem;
   margin-bottom: 3rem;
 
+  h3 {
+    font-weight: 300;
+    text-align: center;
+    border-bottom: 1.5px solid #999;
+  }
+
   p {
     display: flex;
     justify-content: space-between;

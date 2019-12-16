@@ -8,21 +8,33 @@ import StyledSidebar from '../../styles/StyledSidebar';
 import StyledAllContacts from '../../styles/AllContacts';
 
 
-const SideBar = ({contacts, contactHandlerCallback}) => {
-
+const SideBar = ({
+  contacts,
+  contactHandlerCallback,
+  onSearchInputHandler,
+  searchValue,
+}) => {
   return (
     <StyledSidebar>
-      <Search />
+      <Search
+        onSearchInputHandler={onSearchInputHandler}
+        searchValue={searchValue}
+      />
       <StyledAllContacts>
-        <AllContacts contacts={contacts} contactHandlerCallback={contactHandlerCallback} />
+        <AllContacts
+          contacts={contacts}
+          contactHandlerCallback={contactHandlerCallback}
+        />
       </StyledAllContacts>
     </StyledSidebar>
   );
-}
+};
 
 SideBar.propTypes = {
   contacts: PropTypes.array.isRequired,
-  contactHandlerCallback: PropTypes.func.isRequired
-}
+  contactHandlerCallback: PropTypes.func.isRequired,
+  onSearchInputHandler: PropTypes.func.isRequired,
+  searchValue: PropTypes.string.isRequired,
+};
 
 export default SideBar;
