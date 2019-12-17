@@ -1,6 +1,7 @@
 /* eslint-disable react/forbid-prop-types */
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 import Header from '../components/UI/Header';
 import Search from '../components/UI/Search';
@@ -9,6 +10,7 @@ import AllContacts from '../components/AllContacts';
 import SelectedContact from '../components/SelectedContact';
 import StyledGrid from '../styles/StyledGrid';
 import Button from './UI/Button';
+
 
 const Home = ({
   contacts,
@@ -22,7 +24,7 @@ const Home = ({
     <>
       <Header />
       <div style={{ marginTop: '4rem', marginLeft: '7rem' }}>
-        <Button action="add" name="Add new contact" />
+        <Link to="/contact/new"><Button action="add" name="Add new contact" /></Link>
       </div>
       <StyledGrid>
         <SideBar

@@ -2,6 +2,7 @@
 /* eslint-disable react/forbid-prop-types */
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 import StyledSelectedContact from '../styles/StyledSelectedContact';
 import Button from '../components/UI/Button';
@@ -67,7 +68,9 @@ const SelectedContact = ({ selectedContact }) => {
         <span style={{fontWeight: "bold", textTransform: "Capitalize"}}>Firstname </span>
         {relationship}
       </p>
-      <Button action="edit" name="edit" />
+      <Link to="/contact/edit">
+        <Button action="edit" name="edit" />
+      </Link>
       <Button action="delete" name="delete" />
     </StyledSelectedContact>
   );

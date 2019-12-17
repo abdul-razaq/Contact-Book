@@ -18,4 +18,4 @@ const StyledNavLink = styled(NavLink)`
   }
 `;
 
-export default StyledNavLink
+export default StyledNavLink;

@@ -5,6 +5,8 @@ import { Route, Switch } from 'react-router-dom';
 import GlobalStyle from '../styles/GlobalStyles';
 import Container from '../styles/Container';
 import Home from '../components/Home';
+import AddContact from '../components/AddContact';
+import EditContact from '../components/EditContact';
 
 const App = () => {
   // STATES
@@ -52,7 +54,7 @@ const App = () => {
   const [selectedContact, setSelectedContact] = useState(contacts[0]);
 
   const [searchValue, setSearchValue] = useState('');
-  
+
   const [searchedContact, setSearchedContact] = useState([]);
 
   // EVENT HANDLERS
@@ -67,7 +69,8 @@ const App = () => {
     setSearchValue(searchInput);
     const matchedContact = contacts.filter(
       ({ firstname, lastname }) =>
-        `${firstname} ${lastname}`.toLowerCase() === searchInput.trim().toLowerCase()
+        `${firstname} ${lastname}`.toLowerCase() ===
+        searchInput.trim().toLowerCase()
     );
     setSearchedContact(matchedContact);
   };
@@ -92,6 +95,8 @@ const App = () => {
           )}
         />
         <Route path="/about" exact render={() => <div>About</div>} />
+        <Route path="/contact/new" exact component={AddContact} />
+        <Route path="/contact/edit" exact component={EditContact} />
       </Switch>
     </Container>
   );
