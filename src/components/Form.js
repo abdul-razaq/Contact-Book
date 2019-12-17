@@ -1,5 +1,7 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
+/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-import { useFormik } from 'formik';
+import { Formik } from 'formik';
 import * as Yup from 'yup';
 
 // A custom validation function. This must return an object
@@ -30,75 +32,74 @@ import * as Yup from 'yup';
 
 const Form = () => {
   // Pass the useFormik() hook initial form values and a submit function that will be called when the form is submitted
-  const formik = useFormik({
-    initialValues: {
-      firstName: '',
-      lastName: '',
-      email: 'foo@email.bar',
-    },
+  // const formik = useFormik({
+  //   initialValues: {
+  //     firstName: '',
+  //     lastName: '',
+  //     email: 'foo@email.bar',
+  //   },
 
-    validationSchema: Yup.object({
-      firstName: Yup.string()
-        .max(15, 'Must be 15 characters or less')
-        .required('Required'),
-      
-      lastName: Yup.string()
-        .max(20, 'Must be 20 characters or less')
-        .required('Required'),
-      
-      email: Yup.string()
-        .email('Invalid email address')
-        .required('Required'),
-    }),
-    
-    onSubmit: values => {
-      console.log(JSON.stringify(values));
-    },
-  });
+  //   validationSchema: Yup.object({
+  //     firstName: Yup.string()
+  //       .max(15, 'Must be 15 characters or less')
+  //       .required('Required'),
 
-  console.log(formik);
+  //     lastName: Yup.string()
+  //       .max(20, 'Must be 20 characters or less')
+  //       .required('Required'),
+
+  //     email: Yup.string()
+  //       .email('Invalid email address')
+  //       .required('Required'),
+  //   }),
+
+  //   onSubmit: values => {
+  //     console.log(JSON.stringify(values));
+  //   },
+  // });
+
   return (
-    <form onSubmit={formik.handleSubmit}>
-      <label htmlFor="email">Email Address</label>
-      <input
-        type="email"
-        name="email"
-        id="email"
-        onChange={formik.handleChange}
-        onBlur={formik.handleBlur}
-        value={formik.values.email}
-      />
-      {formik.touched.email && formik.errors.email ? (
-        <div>{formik.errors.email}</div>
-      ) : null}
+    <Formik
+      initialValues={{ firstName: '', lastName: '', email: '' }}
+      validationSchema={Yup.object({
+        firstName: Yup.string()
+          .max(15, 'Must be 15 characters or less')
+          .required('Required'),
 
-      <label htmlFor="firstName">First Name</label>
-      <input
-        type="text"
-        name="firstName"
-        id="firstName"
-        onChange={formik.handleChange}
-        onBlur={formik.handleBlur}
-        value={formik.values.firstName}
-      />
-      {formik.touched.firstName && formik.errors.firstName ? (
-        <div>{formik.errors.firstName}</div>
-      ) : null}
+        lastName: Yup.string()
+          .max(20, 'Must be 20 characters or less')
+          .required('Required'),
 
-      <label htmlFor="lastName">Last Name</label>
-      <input
-        type="text"
-        name="lastName"
-        id="lastName"
-        onChange={formik.handleChange}
-        onBlur={formik.handleBlur}
-        value={formik.values.lastName}
-      />
-      {formik.touched.lastName && formik.errors.lastName ? (
-        <div>{formik.errors.lastName}</div>
-      ) : null}
-      <button type="button">Submit</button>
-    </form>
+        email: Yup.string()
+          .email('Invalid email address')
+          .required('Required'),
+      })}
+      onSubmit={(values, { setSubmitting }) => {
+        setTimeout(() => {
+          console.log(JSON.stringify(values, null, 2));
+          setSubmitting(false);
+        }, 1000);
+      }}
+    >
+      {formik => (
+        <form onSubmit={formik.handleSubmit}>
+          <label htmlFor="firstName">First Name</label>
+          <input id="firstName" {...formik.getFieldProps('firstName')} />
+          {formik.touched.firstName && formik.errors.firstName && (
+            <div>{formik.errors.firstName}</div>
+          )}
+
+          <label htmlFor="lastName">Last Name</label>
+          <input id="lastName" {...formik.getFieldProps('lastName')} />
+          {formik.touched.lastName && formik.errors.lastName && <div>{formik.errors.lastName}</div>}
+
+          <label htmlFor="email">Email Address</label>
+          <input id="email" {...formik.getFieldProps('email')} />
+          {formik.touched.email && formik.errors.lastName && <div>{formik.errors.email}</div>}
+          <button type="submit">Submit</button>
+        </form>
+      )}
+    </Formik>
   );
 };
 
