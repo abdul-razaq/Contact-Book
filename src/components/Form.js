@@ -30,7 +30,9 @@ const AddContactForm = ({
   linkedIn,
   relationship,
   history,
+  receiveFormData,
 }) => {
+  console.log(history);
   return (
     <Formik
       initialValues={{
@@ -83,7 +85,7 @@ const AddContactForm = ({
       })}
       onSubmit={(values, { setSubmitting }) => {
         setSubmitting(false);
-        console.log(values);
+        receiveFormData(values);
         setSubmitting(true);
         history.replace('/');
       }}

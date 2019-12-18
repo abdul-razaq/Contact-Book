@@ -75,6 +75,19 @@ const App = () => {
     setSearchedContact(matchedContact);
   };
 
+  const receiveFormData = formData => {
+    // setContacts(prevState => {
+    //   console.log("prevState", prevState);
+    //   console.log("formData", formData);
+    //   prevState.unshift(formData);
+    //   console.log("current state", prevState);
+    // });
+    console.log(formData);
+    // console.log(selectedContact);
+    // setSelectedContact([formData]);
+    // console.log(selectedContact);
+  };
+
   // RETURNED JSX
   return (
     <Container>
@@ -95,7 +108,7 @@ const App = () => {
           )}
         />
         <Route path="/about" exact render={() => <div>About</div>} />
-        <Route path="/contact/new" exact component={AddContact} />
+        <Route path="/contact/new" exact render={() => <AddContact receiveFormData={receiveFormData} />} />
         <Route path="/contact/edit" exact component={EditContact} />
       </Switch>
     </Container>
