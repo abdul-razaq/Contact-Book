@@ -1,3 +1,4 @@
+/* eslint-disable react/require-default-props */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -54,11 +55,11 @@ const AddContactForm = ({
           'phone number must be 15 characters or less'
         ),
         homeAddress: Yup.string()
-          .max(20, 'home Address must be 20 characters or less')
+          .max(50, 'home Address must be 50 characters or less')
           .min(10, 'home Address must be 10 characters or more')
           .required(),
         officeAddress: Yup.string()
-          .max(20, 'office Address must be 20 characters or less')
+          .max(50, 'office Address must be 50 characters or less')
           .min(10, 'office Address must be 10 characters or more'),
         facebook: Yup.string(),
         twitter: Yup.string(),
@@ -167,7 +168,7 @@ const AddContactForm = ({
         <Link to="/">
           <Button action="edit" name="cancel" />
         </Link>
-        <Button name="submit" />
+        <Button name="submit" type="submit" />
       </Form>
     </Formik>
   );
@@ -175,17 +176,17 @@ const AddContactForm = ({
 
 // PropTypes
 AddContactForm.propTypes = {
-  firstName: PropTypes.string.isRequired,
-  lastName: PropTypes.string.isRequired,
-  middleName: PropTypes.string.isRequired,
-  nickName: PropTypes.string.isRequired,
-  phoneNo: PropTypes.string.isRequired,
-  homeAddress: PropTypes.string.isRequired,
-  officeAddress: PropTypes.string.isRequired,
-  facebook: PropTypes.string.isRequired,
-  twitter: PropTypes.string.isRequired,
-  linkedIn: PropTypes.string.isRequired,
-  relationship: PropTypes.string.isRequired,
+  firstName: PropTypes.string,
+  lastName: PropTypes.string,
+  middleName: PropTypes.string,
+  nickName: PropTypes.string,
+  phoneNo: PropTypes.string,
+  homeAddress: PropTypes.string,
+  officeAddress: PropTypes.string,
+  facebook: PropTypes.string,
+  twitter: PropTypes.string,
+  linkedIn: PropTypes.string,
+  relationship: PropTypes.string,
 };
 
 export default AddContactForm;

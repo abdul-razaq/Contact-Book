@@ -5,8 +5,6 @@ import Header from '../components/UI/Header';
 import Form from '../components/Form';
 import Button from './UI/Button';
 
-
-
 const AddContact = () => (
   <>
     <Header />
