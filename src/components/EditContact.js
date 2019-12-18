@@ -14,10 +14,6 @@ const AddContact = () => (
     </Link>
     <div>
       <Form />
-      <Link to="/">
-        <Button action="edit" name="cancel" />
-      </Link>
-      <Button name="save" />
     </div>
   </>
 );

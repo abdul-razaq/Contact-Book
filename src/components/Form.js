@@ -4,11 +4,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { Link } from 'react-router-dom';
-import { Formik, Field } from 'formik';
+import { Formik, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 
 import Button from './UI/Button';
-import StyledForm, { StyledInput, StyledLabel, styledstystyledErrorMessage } from '../styles/StyledForm';
+import StyledForm, {
+  StyledInput,
+  StyledLabel,
+  StyledErrorMessage,
+  StyledFormButton,
+} from '../styles/StyledForm';
 
 const AddContactForm = ({
   firstName,
@@ -53,17 +58,16 @@ const AddContactForm = ({
 
         middleName: Yup.string(),
         nickName: Yup.string(),
-        phoneNo: Yup.string().max(
-          12,
-          'phone number must be 15 characters or less'
-        ),
+        phoneNo: Yup.string()
+          .required('contact phone number is required')
+          .max(12, 'phone number must be 15 characters or less'),
         emailAddress: Yup.string()
           .required('contact email address is required')
           .email('invalid email address'),
         homeAddress: Yup.string()
           .max(50, 'home Address must be 50 characters or less')
           .min(10, 'home Address must be 10 characters or more')
-          .required(),
+          .required('contact home address is required'),
         officeAddress: Yup.string()
           .max(50, 'office Address must be 50 characters or less')
           .min(10, 'office Address must be 10 characters or more'),
@@ -75,7 +79,6 @@ const AddContactForm = ({
           .min(5, 'relationship must be 5 characters or more')
           .required('relationship with contact is required'),
       })}
-
       onSubmit={(values, { setSubmitting }) => {
         setSubmitting(false);
         console.log(values);
@@ -90,7 +93,9 @@ const AddContactForm = ({
           type="text"
           placeholder="Enter contact first name..."
         />
-        <styledErrorMessage name="firstName" />
+        <StyledErrorMessage>
+          <ErrorMessage name="firstName" />
+        </StyledErrorMessage>
 
         <StyledLabel htmlFor="lastName">Last Name</StyledLabel>
         <Field
@@ -99,7 +104,9 @@ const AddContactForm = ({
           type="text"
           placeholder="Enter contact last name..."
         />
-        <styledErrorMessage name="lastName" />
+        <StyledErrorMessage>
+          <ErrorMessage name="lastName" />
+        </StyledErrorMessage>
 
         <StyledLabel htmlFor="middleName">Middle name</StyledLabel>
         <Field
@@ -108,7 +115,9 @@ const AddContactForm = ({
           type="text"
           placeholder="Enter contact middle name..."
         />
-        <styledErrorMessage name="middleName" />
+        <StyledErrorMessage>
+          <ErrorMessage name="middleName" />
+        </StyledErrorMessage>
 
         <StyledLabel htmlFor="nickName">Nick Name</StyledLabel>
         <Field
@@ -117,7 +126,9 @@ const AddContactForm = ({
           type="text"
           placeholder="Enter contact nick name..."
         />
-        <styledErrorMessage name="nickName" />
+        <StyledErrorMessage>
+          <ErrorMessage name="nickName" />
+        </StyledErrorMessage>
 
         <StyledLabel htmlFor="phoneNo">Phone Number</StyledLabel>
         <Field
@@ -126,16 +137,20 @@ const AddContactForm = ({
           type="text"
           placeholder="Enter contact phone number..."
         />
-        <styledErrorMessage name="phoneNo" />
+        <StyledErrorMessage>
+          <ErrorMessage name="phoneNo" />
+        </StyledErrorMessage>
 
-        <StyledLabel htmlFor="email">Email Address</StyledLabel>
+        <StyledLabel htmlFor="emailAddress">Email Address</StyledLabel>
         <Field
           as={StyledInput}
-          name="email"
+          name="emailAddress"
           type="email"
           placeholder="Enter contact email address..."
         />
-        <styledErrorMessage name="phoneNo" />
+        <StyledErrorMessage>
+          <ErrorMessage name="emailAddress" />
+        </StyledErrorMessage>
 
         <StyledLabel htmlFor="homeAddress">Home Address</StyledLabel>
         <Field
@@ -144,7 +159,9 @@ const AddContactForm = ({
           type="text"
           placeholder="Enter contact home address..."
         />
-        <styledErrorMessage name="homeAddress" />
+        <StyledErrorMessage>
+          <ErrorMessage name="homeAddress" />
+        </StyledErrorMessage>
 
         <StyledLabel htmlFor="officeAddress">Office Address</StyledLabel>
         <Field
@@ -153,7 +170,9 @@ const AddContactForm = ({
           type="text"
           placeholder="Enter contact office address..."
         />
-        <styledErrorMessage name="officeAddress" />
+        <StyledErrorMessage>
+          <ErrorMessage name="officeAddress" />
+        </StyledErrorMessage>
 
         <StyledLabel htmlFor="facebook">Facebook Link</StyledLabel>
         <Field
@@ -162,7 +181,9 @@ const AddContactForm = ({
           type="text"
           placeholder="e.g https://facebook.com/johndoe"
         />
-        <styledErrorMessage name="facebook" />
+        <StyledErrorMessage>
+          <ErrorMessage name="facebook" />
+        </StyledErrorMessage>
 
         <StyledLabel htmlFor="twitter">Twitter Link</StyledLabel>
         <Field
@@ -171,7 +192,9 @@ const AddContactForm = ({
           type="text"
           placeholder="e.g https://twitter.com/johndoe"
         />
-        <styledErrorMessage name="twitter" />
+        <StyledErrorMessage>
+          <ErrorMessage name="twitter" />
+        </StyledErrorMessage>
 
         <StyledLabel htmlFor="linkedIn">LinkedIn Link</StyledLabel>
         <Field
@@ -180,7 +203,9 @@ const AddContactForm = ({
           type="text"
           placeholder="e.g https://linkedin.com/johndoe"
         />
-        <styledErrorMessage name="linkedIn" />
+        <StyledErrorMessage>
+          <ErrorMessage name="linkedIn" />
+        </StyledErrorMessage>
 
         <StyledLabel htmlFor="relationship">Relationship</StyledLabel>
         <Field
@@ -189,12 +214,16 @@ const AddContactForm = ({
           type="text"
           placeholder="Enter relationship with contact. e.g Friend"
         />
-        <styledErrorMessage name="relationship" />
+        <StyledErrorMessage>
+          <ErrorMessage name="relationship" />
+        </StyledErrorMessage>
 
-        <Link to="/">
-          <Button action="edit" name="cancel" />
-        </Link>
-        <Button name="submit" type="submit" />
+        <StyledFormButton>
+          <Link to="/">
+            <Button action="edit" name="cancel" />
+          </Link>
+          <Button name="submit" type="submit" />
+        </StyledFormButton>
       </StyledForm>
     </Formik>
   );
