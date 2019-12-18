@@ -2,8 +2,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { Link } from 'react-router-dom';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
+
+import Button from './UI/Button';
 
 const AddContactForm = ({
   firstName,
@@ -65,6 +68,12 @@ const AddContactForm = ({
           .min(5, 'relationship must be 5 characters or more')
           .required('relationship with contact is required'),
       })}
+
+      onSubmit={(values, { setSubmitting }) => {
+        setSubmitting(false);
+        console.log(values);
+        setSubmitting(true);
+      }}
     >
       <Form>
         <label htmlFor="firstName">First Name</label>
@@ -154,6 +163,11 @@ const AddContactForm = ({
           placeholder="Enter relationship with contact. e.g Friend"
         />
         <ErrorMessage name="relationship" />
+
+        <Link to="/">
+          <Button action="edit" name="cancel" />
+        </Link>
+        <Button name="submit" />
       </Form>
     </Formik>
   );
@@ -172,6 +186,6 @@ AddContactForm.propTypes = {
   twitter: PropTypes.string.isRequired,
   linkedIn: PropTypes.string.isRequired,
   relationship: PropTypes.string.isRequired,
-}
+};
 
 export default AddContactForm;
