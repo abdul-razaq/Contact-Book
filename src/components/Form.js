@@ -4,10 +4,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { Link } from 'react-router-dom';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { Formik, Field } from 'formik';
 import * as Yup from 'yup';
 
 import Button from './UI/Button';
+import StyledForm, { StyledInput, StyledLabel, styledstystyledErrorMessage } from '../styles/StyledForm';
 
 const AddContactForm = ({
   firstName,
@@ -15,6 +16,7 @@ const AddContactForm = ({
   middleName,
   nickName,
   phoneNo,
+  emailAddress,
   homeAddress,
   officeAddress,
   facebook,
@@ -30,6 +32,7 @@ const AddContactForm = ({
         middleName: middleName || '',
         nickName: nickName || '',
         phoneNo: phoneNo || '',
+        emailAddress: emailAddress || '',
         homeAddress: homeAddress || '',
         officeAddress: officeAddress || '',
         facebook: facebook || '',
@@ -54,6 +57,9 @@ const AddContactForm = ({
           12,
           'phone number must be 15 characters or less'
         ),
+        emailAddress: Yup.string()
+          .required('contact email address is required')
+          .email('invalid email address'),
         homeAddress: Yup.string()
           .max(50, 'home Address must be 50 characters or less')
           .min(10, 'home Address must be 10 characters or more')
@@ -76,100 +82,120 @@ const AddContactForm = ({
         setSubmitting(true);
       }}
     >
-      <Form>
-        <label htmlFor="firstName">First Name</label>
+      <StyledForm>
+        <StyledLabel htmlFor="firstName">First Name</StyledLabel>
         <Field
+          as={StyledInput}
           name="firstName"
           type="text"
           placeholder="Enter contact first name..."
         />
-        <ErrorMessage name="firstName" />
+        <styledErrorMessage name="firstName" />
 
-        <label htmlFor="lastName">Last Name</label>
+        <StyledLabel htmlFor="lastName">Last Name</StyledLabel>
         <Field
+          as={StyledInput}
           name="lastName"
           type="text"
           placeholder="Enter contact last name..."
         />
-        <ErrorMessage name="lastName" />
+        <styledErrorMessage name="lastName" />
 
-        <label htmlFor="middleName">Middle name</label>
+        <StyledLabel htmlFor="middleName">Middle name</StyledLabel>
         <Field
+          as={StyledInput}
           name="middleName"
           type="text"
           placeholder="Enter contact middle name..."
         />
-        <ErrorMessage name="middleName" />
+        <styledErrorMessage name="middleName" />
 
-        <label htmlFor="nickName">Nick Name</label>
+        <StyledLabel htmlFor="nickName">Nick Name</StyledLabel>
         <Field
+          as={StyledInput}
           name="nickName"
           type="text"
           placeholder="Enter contact nick name..."
         />
-        <ErrorMessage name="nickName" />
+        <styledErrorMessage name="nickName" />
 
-        <label htmlFor="phoneNo">Phone Number</label>
+        <StyledLabel htmlFor="phoneNo">Phone Number</StyledLabel>
         <Field
+          as={StyledInput}
           name="phoneNo"
           type="text"
           placeholder="Enter contact phone number..."
         />
-        <ErrorMessage name="phoneNo" />
+        <styledErrorMessage name="phoneNo" />
 
-        <label htmlFor="homeAddress">Home Address</label>
+        <StyledLabel htmlFor="email">Email Address</StyledLabel>
         <Field
+          as={StyledInput}
+          name="email"
+          type="email"
+          placeholder="Enter contact email address..."
+        />
+        <styledErrorMessage name="phoneNo" />
+
+        <StyledLabel htmlFor="homeAddress">Home Address</StyledLabel>
+        <Field
+          as={StyledInput}
           name="homeAddress"
           type="text"
           placeholder="Enter contact home address..."
         />
-        <ErrorMessage name="homeAddress" />
+        <styledErrorMessage name="homeAddress" />
 
-        <label htmlFor="officeAddress">Office Address</label>
+        <StyledLabel htmlFor="officeAddress">Office Address</StyledLabel>
         <Field
+          as={StyledInput}
           name="officeAddress"
           type="text"
           placeholder="Enter contact office address..."
         />
-        <ErrorMessage name="officeAddress" />
+        <styledErrorMessage name="officeAddress" />
 
-        <label htmlFor="facebook">Facebook Link</label>
+        <StyledLabel htmlFor="facebook">Facebook Link</StyledLabel>
         <Field
+          as={StyledInput}
           name="facebook"
           type="text"
           placeholder="e.g https://facebook.com/johndoe"
         />
-        <ErrorMessage name="facebook" />
+        <styledErrorMessage name="facebook" />
 
-        <label htmlFor="twitter">Twitter Link</label>
+        <StyledLabel htmlFor="twitter">Twitter Link</StyledLabel>
         <Field
+          as={StyledInput}
           name="twitter"
           type="text"
           placeholder="e.g https://twitter.com/johndoe"
         />
-        <ErrorMessage name="twitter" />
+        <styledErrorMessage name="twitter" />
 
-        <label htmlFor="linkedIn">LinkedIn Link</label>
+        <StyledLabel htmlFor="linkedIn">LinkedIn Link</StyledLabel>
         <Field
+          as={StyledInput}
           name="linkedIn"
           type="text"
           placeholder="e.g https://linkedin.com/johndoe"
         />
-        <ErrorMessage name="linkedIn" />
+        <styledErrorMessage name="linkedIn" />
 
-        <label htmlFor="relationship">Relationship</label>
+        <StyledLabel htmlFor="relationship">Relationship</StyledLabel>
         <Field
+          as={StyledInput}
           name="relationship"
           type="text"
           placeholder="Enter relationship with contact. e.g Friend"
         />
-        <ErrorMessage name="relationship" />
+        <styledErrorMessage name="relationship" />
 
         <Link to="/">
           <Button action="edit" name="cancel" />
         </Link>
         <Button name="submit" type="submit" />
-      </Form>
+      </StyledForm>
     </Formik>
   );
 };
@@ -181,6 +207,7 @@ AddContactForm.propTypes = {
   middleName: PropTypes.string,
   nickName: PropTypes.string,
   phoneNo: PropTypes.string,
+  emailAddress: PropTypes.string,
   homeAddress: PropTypes.string,
   officeAddress: PropTypes.string,
   facebook: PropTypes.string,
