@@ -18,7 +18,7 @@ const Home = ({
   selectedContact,
   onSearchInputHandler,
   searchValue,
-  searchedContact
+  searchedContact,
 }) => {
   return (
     <>

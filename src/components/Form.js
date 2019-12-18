@@ -1,9 +1,10 @@
+/* eslint-disable react/forbid-prop-types */
 /* eslint-disable react/require-default-props */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { Formik, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 
@@ -28,6 +29,7 @@ const AddContactForm = ({
   twitter,
   linkedIn,
   relationship,
+  history,
 }) => {
   return (
     <Formik
@@ -60,7 +62,7 @@ const AddContactForm = ({
         nickName: Yup.string(),
         phoneNo: Yup.string()
           .required('contact phone number is required')
-          .max(12, 'phone number must be 15 characters or less'),
+          .max(12, 'phone number must be 12 characters or less'),
         emailAddress: Yup.string()
           .required('contact email address is required')
           .email('invalid email address'),
@@ -83,6 +85,7 @@ const AddContactForm = ({
         setSubmitting(false);
         console.log(values);
         setSubmitting(true);
+        history.replace('/');
       }}
     >
       <StyledForm>
@@ -224,6 +227,7 @@ const AddContactForm = ({
           </Link>
           <Button name="submit" type="submit" />
         </StyledFormButton>
+      
       </StyledForm>
     </Formik>
   );
@@ -243,6 +247,7 @@ AddContactForm.propTypes = {
   twitter: PropTypes.string,
   linkedIn: PropTypes.string,
   relationship: PropTypes.string,
+  history: PropTypes.object,
 };
 
-export default AddContactForm;
+export default withRouter(AddContactForm);
