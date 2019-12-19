@@ -18,6 +18,7 @@ const SelectedContact = ({ selectedContact }) => {
     nickname,
     officeAddress,
     phoneNo,
+    emailAddress,
     relationship,
     twitter,
   } = selectedContact;
@@ -37,10 +38,6 @@ const SelectedContact = ({ selectedContact }) => {
         {middlename}
       </p>
       <p>
-        <span style={{fontWeight: "bold", textTransform: "Capitalize"}}>Facebook </span>
-        {facebook}
-      </p>
-      <p>
         <span style={{fontWeight: "bold", textTransform: "Capitalize"}}>Nickname </span>
         {nickname}
       </p>
@@ -49,23 +46,31 @@ const SelectedContact = ({ selectedContact }) => {
         {phoneNo}
       </p>
       <p>
-        <span style={{fontWeight: "bold", textTransform: "Capitalize"}}>Firstname </span>
-        {officeAddress}
+        <span style={{fontWeight: "bold", textTransform: "Capitalize"}}>Email </span>
+        {emailAddress}
       </p>
       <p>
-        <span style={{fontWeight: "bold", textTransform: "Capitalize"}}>Firstname </span>
-        {twitter}
-      </p>
-      <p>
-        <span style={{fontWeight: "bold", textTransform: "Capitalize"}}>Firstname </span>
+        <span style={{fontWeight: "bold", textTransform: "Capitalize"}}>Home Address </span>
         {homeAddress}
       </p>
       <p>
-        <span style={{fontWeight: "bold", textTransform: "Capitalize"}}>Firstname </span>
+        <span style={{fontWeight: "bold", textTransform: "Capitalize"}}>Office Address </span>
+        {officeAddress}
+      </p>
+      <p>
+        <span style={{fontWeight: "bold", textTransform: "Capitalize"}}>Facebook </span>
+        {facebook}
+      </p>
+      <p>
+        <span style={{fontWeight: "bold", textTransform: "Capitalize"}}>Twitter </span>
+        {twitter}
+      </p>
+      <p>
+        <span style={{fontWeight: "bold", textTransform: "Capitalize"}}>LinkedIn </span>
         {linkedIn}
       </p>
       <p>
-        <span style={{fontWeight: "bold", textTransform: "Capitalize"}}>Firstname </span>
+        <span style={{fontWeight: "bold", textTransform: "Capitalize"}}>Relationship </span>
         {relationship}
       </p>
       <Link to="/contact/edit">

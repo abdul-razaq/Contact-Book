@@ -16,6 +16,7 @@ const App = () => {
       lastname: 'Doe',
       middlename: 'Jack',
       phoneNo: '+2348034545453',
+      emailAddress: 'sly@gmail.com',
       nickname: 'Sly',
       homeAddress: '21, Jump Street',
       officeAddress: '23, Jump Street',
@@ -29,6 +30,7 @@ const App = () => {
       lastname: 'Mead',
       middlename: 'Nibble',
       phoneNo: '+12343001939313',
+      emailAddress: 'ziko@gmail.com',
       nickname: 'Ziko',
       homeAddress: '441, eel road, massachussets',
       officeAddress: '321, zippo street, New York',
@@ -43,6 +45,7 @@ const App = () => {
       middlename: 'Angela',
       phoneNo: '+1-31342452452452',
       nickname: 'SweetiePie',
+      emailAddress: 'angela@gmail.com',
       homeAddress: '33, Anderson street, Boston',
       officeAddress: '23, Zoey road, main building, Manchester',
       facebook: 'https://www.facebook.com/janedoe',
@@ -76,17 +79,13 @@ const App = () => {
   };
 
   const receiveFormData = formData => {
-    // setContacts(prevState => {
-    //   console.log("prevState", prevState);
-    //   console.log("formData", formData);
-    //   prevState.unshift(formData);
-    //   console.log("current state", prevState);
-    // });
-    console.log(formData);
-    // console.log(selectedContact);
-    // setSelectedContact([formData]);
-    // console.log(selectedContact);
+    setContacts(prevState => {
+      console.log("prevState", prevState);
+      console.log("formData", formData);
+      return prevState;
+    });
   };
+
 
   // RETURNED JSX
   return (

@@ -17,10 +17,10 @@ import StyledForm, {
 } from '../styles/StyledForm';
 
 const AddContactForm = ({
-  firstName,
-  lastName,
-  middleName,
-  nickName,
+  firstname,
+  lastname,
+  middlename,
+  nickname,
   phoneNo,
   emailAddress,
   homeAddress,
@@ -32,14 +32,13 @@ const AddContactForm = ({
   history,
   receiveFormData,
 }) => {
-  console.log(history);
   return (
     <Formik
       initialValues={{
-        firstName: firstName || '',
-        lastName: lastName || '',
-        middleName: middleName || '',
-        nickName: nickName || '',
+        firstname: firstname || '',
+        lastname: lastname || '',
+        middlename: middlename || '',
+        nickname: nickname || '',
         phoneNo: phoneNo || '',
         emailAddress: emailAddress || '',
         homeAddress: homeAddress || '',
@@ -50,18 +49,18 @@ const AddContactForm = ({
         relationship: relationship || '',
       }}
       validationSchema={Yup.object({
-        firstName: Yup.string()
+        firstname: Yup.string()
           .max(15, 'first name must be 15 characters or less')
           .min(3, 'first name must be 3 characters or more')
           .required('first name must be provided'),
 
-        lastName: Yup.string()
+        lastname: Yup.string()
           .max(15, 'last name must be 15 characters or less')
           .min(3, 'last name must be 3 characters or more')
           .required('last name must be provided'),
 
-        middleName: Yup.string(),
-        nickName: Yup.string(),
+        middlename: Yup.string(),
+        nickname: Yup.string(),
         phoneNo: Yup.string()
           .required('contact phone number is required')
           .max(12, 'phone number must be 12 characters or less'),
@@ -91,48 +90,48 @@ const AddContactForm = ({
       }}
     >
       <StyledForm>
-        <StyledLabel htmlFor="firstName">First Name</StyledLabel>
+        <StyledLabel htmlFor="firstname">First Name</StyledLabel>
         <Field
           as={StyledInput}
-          name="firstName"
+          name="firstname"
           type="text"
           placeholder="Enter contact first name..."
         />
         <StyledErrorMessage>
-          <ErrorMessage name="firstName" />
+          <ErrorMessage name="firstname" />
         </StyledErrorMessage>
 
-        <StyledLabel htmlFor="lastName">Last Name</StyledLabel>
+        <StyledLabel htmlFor="lastname">Last Name</StyledLabel>
         <Field
           as={StyledInput}
-          name="lastName"
+          name="lastname"
           type="text"
           placeholder="Enter contact last name..."
         />
         <StyledErrorMessage>
-          <ErrorMessage name="lastName" />
+          <ErrorMessage name="lastname" />
         </StyledErrorMessage>
 
-        <StyledLabel htmlFor="middleName">Middle name</StyledLabel>
+        <StyledLabel htmlFor="middlename">Middle name</StyledLabel>
         <Field
           as={StyledInput}
-          name="middleName"
+          name="middlename"
           type="text"
           placeholder="Enter contact middle name..."
         />
         <StyledErrorMessage>
-          <ErrorMessage name="middleName" />
+          <ErrorMessage name="middlename" />
         </StyledErrorMessage>
 
-        <StyledLabel htmlFor="nickName">Nick Name</StyledLabel>
+        <StyledLabel htmlFor="nickname">Nick Name</StyledLabel>
         <Field
           as={StyledInput}
-          name="nickName"
+          name="nickname"
           type="text"
           placeholder="Enter contact nick name..."
         />
         <StyledErrorMessage>
-          <ErrorMessage name="nickName" />
+          <ErrorMessage name="nickname" />
         </StyledErrorMessage>
 
         <StyledLabel htmlFor="phoneNo">Phone Number</StyledLabel>
@@ -179,7 +178,7 @@ const AddContactForm = ({
           <ErrorMessage name="officeAddress" />
         </StyledErrorMessage>
 
-        <StyledLabel htmlFor="facebook">Facebook Link</StyledLabel>
+        <StyledLabel htmlFor="facebook">Facebook</StyledLabel>
         <Field
           as={StyledInput}
           name="facebook"
@@ -190,7 +189,7 @@ const AddContactForm = ({
           <ErrorMessage name="facebook" />
         </StyledErrorMessage>
 
-        <StyledLabel htmlFor="twitter">Twitter Link</StyledLabel>
+        <StyledLabel htmlFor="twitter">Twitter</StyledLabel>
         <Field
           as={StyledInput}
           name="twitter"
@@ -201,7 +200,7 @@ const AddContactForm = ({
           <ErrorMessage name="twitter" />
         </StyledErrorMessage>
 
-        <StyledLabel htmlFor="linkedIn">LinkedIn Link</StyledLabel>
+        <StyledLabel htmlFor="linkedIn">LinkedIn</StyledLabel>
         <Field
           as={StyledInput}
           name="linkedIn"
@@ -237,10 +236,10 @@ const AddContactForm = ({
 
 // PropTypes
 AddContactForm.propTypes = {
-  firstName: PropTypes.string,
-  lastName: PropTypes.string,
-  middleName: PropTypes.string,
-  nickName: PropTypes.string,
+  firstname: PropTypes.string,
+  lastname: PropTypes.string,
+  middlename: PropTypes.string,
+  nickname: PropTypes.string,
   phoneNo: PropTypes.string,
   emailAddress: PropTypes.string,
   homeAddress: PropTypes.string,
