@@ -8,6 +8,7 @@ const StyledSidebar = styled.aside`
   border-radius: 1rem;
   padding: 0 3rem;
   margin-left: 2rem;
+  z-index: 1000;
 
   p {
     margin-top: -1.6rem;

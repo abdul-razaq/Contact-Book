@@ -80,12 +80,19 @@ const App = () => {
 
   const receiveFormData = formData => {
     setContacts(prevState => {
-      console.log("prevState", prevState);
-      console.log("formData", formData);
-      return prevState;
+      for (const contact of prevState) {
+        if (
+          `${contact.firstname} ${contact.lastname}` ===
+          `${formData.firstname} ${formData.lastname}`
+        ) {
+          console.log('Contact already exists');
+          return prevState;
+        }
+      }
+      return [formData, ...prevState];
     });
+    setSelectedContact(formData);
   };
-
 
   // RETURNED JSX
   return (
@@ -107,7 +114,11 @@ const App = () => {
           )}
         />
         <Route path="/about" exact render={() => <div>About</div>} />
-        <Route path="/contact/new" exact render={() => <AddContact receiveFormData={receiveFormData} />} />
+        <Route
+          path="/contact/new"
+          exact
+          render={() => <AddContact receiveFormData={receiveFormData} />}
+        />
         <Route path="/contact/edit" exact component={EditContact} />
       </Switch>
     </Container>
