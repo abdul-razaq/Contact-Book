@@ -24,7 +24,7 @@ const SelectedContact = ({ selectedContact }) => {
   } = selectedContact;
   return (
     <StyledSelectedContact>
-      <h3>Contact Details for {`"${firstname} ${lastname}" a.k.a (${nickname})`} </h3>
+      <h3>Contact Details for {`"${firstname} ${lastname}"`} </h3>
       <p>
         <span style={{fontWeight: "bold", textTransform: "Capitalize"}}>Firstname </span>
         <span>{firstname}</span>

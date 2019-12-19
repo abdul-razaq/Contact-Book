@@ -60,6 +60,8 @@ const App = () => {
 
   const [searchedContact, setSearchedContact] = useState([]);
 
+  const [flashMessage, setFlashMessage] = useState(null);
+
   // EVENT HANDLERS
   const selectedContactHandler = contactId => {
     const select = contacts.filter(contact => {
@@ -85,14 +87,16 @@ const App = () => {
           `${contact.firstname} ${contact.lastname}` ===
           `${formData.firstname} ${formData.lastname}`
         ) {
-          console.log('Contact already exists');
+          setFlashMessage(`Contact "${formData.firstname} ${formData.lastname}" already exists!, Add a new contact`);
           return prevState;
         }
       }
       return [formData, ...prevState];
     });
     setSelectedContact(formData);
+    setFlashMessage(`Contact "${formData.firstname} ${formData.lastname}" Added!`);
   };
+  console.log(flashMessage);
 
   // RETURNED JSX
   return (
