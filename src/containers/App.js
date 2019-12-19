@@ -80,6 +80,7 @@ const App = () => {
     setSearchedContact(matchedContact);
   };
 
+  // TODO: Add FlashMessage logic e.g "Contact Added!"
   const receiveFormData = formData => {
     setContacts(prevState => {
       for (const contact of prevState) {
@@ -87,16 +88,15 @@ const App = () => {
           `${contact.firstname} ${contact.lastname}` ===
           `${formData.firstname} ${formData.lastname}`
         ) {
-          setFlashMessage(`Contact "${formData.firstname} ${formData.lastname}" already exists!, Add a new contact`);
+          // setFlashMessage(`Contact "${formData.firstname} ${formData.lastname}" already exists!, Add a new contact`);
           return prevState;
         }
       }
       return [formData, ...prevState];
     });
     setSelectedContact(formData);
-    setFlashMessage(`Contact "${formData.firstname} ${formData.lastname}" Added!`);
+    // setFlashMessage(`Contact "${formData.firstname} ${formData.lastname}" Added!`);
   };
-  console.log(flashMessage);
 
   // RETURNED JSX
   return (
