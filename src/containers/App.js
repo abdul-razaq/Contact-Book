@@ -60,7 +60,7 @@ const App = () => {
 
   const [searchedContact, setSearchedContact] = useState([]);
 
-  const [flashMessage, setFlashMessage] = useState(null);
+  // const [flashMessage, setFlashMessage] = useState(null);
 
   // EVENT HANDLERS
   const selectedContactHandler = contactId => {
