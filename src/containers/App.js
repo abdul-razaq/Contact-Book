@@ -61,6 +61,17 @@ const App = () => {
   const [searchedContact, setSearchedContact] = useState([]);
 
   // const [flashMessage, setFlashMessage] = useState(null);
+  
+  // Fetch contacts data from localStorage
+  const localStorageContacts = () => {
+    let localContacts;
+    if (localStorage.getItem('contacts') === null) {
+      localContacts = [];
+    } else {
+      localContacts = JSON.parse(localStorage.getItem('contacts'));
+    }
+    setContacts(localContacts);
+  };
 
   // EVENT HANDLERS
   const selectedContactHandler = contactId => {
