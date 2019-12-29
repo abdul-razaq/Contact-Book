@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 import StyledSelectedContact from '../styles/StyledSelectedContact';
-import Button from '../components/UI/Button';
+import StyledButton from '../styles/StyledButton';
 
 const SelectedContact = ({ selectedContact }) => {
   const {
@@ -21,68 +21,102 @@ const SelectedContact = ({ selectedContact }) => {
     emailAddress,
     relationship,
     twitter,
-  } = selectedContact;
-  return (
+  } = selectedContact || [];
+
+  const contactToShow = (
     <StyledSelectedContact>
       <h3>Contact Details for {`"${firstname} ${lastname}"`} </h3>
       <p>
-        <span style={{fontWeight: "bold", textTransform: "Capitalize"}}>Firstname </span>
+        <span style={{ fontWeight: 'bold', textTransform: 'Capitalize' }}>
+          Firstname{' '}
+        </span>
         <span>{firstname}</span>
       </p>
       <p>
-        <span style={{fontWeight: "bold", textTransform: "Capitalize"}}>Lastname </span>
+        <span style={{ fontWeight: 'bold', textTransform: 'Capitalize' }}>
+          Lastname{' '}
+        </span>
         {lastname}
       </p>
       <p>
-        <span style={{fontWeight: "bold", textTransform: "Capitalize"}}>Middlename </span>
+        <span style={{ fontWeight: 'bold', textTransform: 'Capitalize' }}>
+          Middlename{' '}
+        </span>
         {middlename}
       </p>
       <p>
-        <span style={{fontWeight: "bold", textTransform: "Capitalize"}}>Nickname </span>
+        <span style={{ fontWeight: 'bold', textTransform: 'Capitalize' }}>
+          Nickname{' '}
+        </span>
         {nickname}
       </p>
       <p>
-        <span style={{fontWeight: "bold", textTransform: "Capitalize"}}>Phone </span>
+        <span style={{ fontWeight: 'bold', textTransform: 'Capitalize' }}>
+          Phone{' '}
+        </span>
         {phoneNo}
       </p>
       <p>
-        <span style={{fontWeight: "bold", textTransform: "Capitalize"}}>Email </span>
+        <span style={{ fontWeight: 'bold', textTransform: 'Capitalize' }}>
+          Email{' '}
+        </span>
         {emailAddress}
       </p>
       <p>
-        <span style={{fontWeight: "bold", textTransform: "Capitalize"}}>Home Address </span>
+        <span style={{ fontWeight: 'bold', textTransform: 'Capitalize' }}>
+          Home Address{' '}
+        </span>
         {homeAddress}
       </p>
       <p>
-        <span style={{fontWeight: "bold", textTransform: "Capitalize"}}>Office Address </span>
+        <span style={{ fontWeight: 'bold', textTransform: 'Capitalize' }}>
+          Office Address{' '}
+        </span>
         {officeAddress}
       </p>
       <p>
-        <span style={{fontWeight: "bold", textTransform: "Capitalize"}}>Facebook </span>
+        <span style={{ fontWeight: 'bold', textTransform: 'Capitalize' }}>
+          Facebook{' '}
+        </span>
         {facebook}
       </p>
       <p>
-        <span style={{fontWeight: "bold", textTransform: "Capitalize"}}>Twitter </span>
+        <span style={{ fontWeight: 'bold', textTransform: 'Capitalize' }}>
+          Twitter{' '}
+        </span>
         {twitter}
       </p>
       <p>
-        <span style={{fontWeight: "bold", textTransform: "Capitalize"}}>LinkedIn </span>
+        <span style={{ fontWeight: 'bold', textTransform: 'Capitalize' }}>
+          LinkedIn{' '}
+        </span>
         {linkedIn}
       </p>
       <p>
-        <span style={{fontWeight: "bold", textTransform: "Capitalize"}}>Relationship </span>
+        <span style={{ fontWeight: 'bold', textTransform: 'Capitalize' }}>
+          Relationship{' '}
+        </span>
         {relationship}
       </p>
       <Link to="/contact/edit">
-        <Button action="edit" name="edit" />
+        <StyledButton action="edit">edit</StyledButton>
       </Link>
-      <Button action="delete" name="delete" />
+      <StyledButton action="delete">delete</StyledButton>
     </StyledSelectedContact>
   );
+
+  if (!selectedContact) {
+    return (
+      <p style={{ marginTop: '-3rem', marginRight: '8rem', fontWeight: 900 }}>
+        You do not have any contact yet, Add a new contact
+      </p>
+    );
+  }
+  return contactToShow;
 };
 
 SelectedContact.propTypes = {
-  selectedContact: PropTypes.object.isRequired,
+  selectedContact: PropTypes.object,
 };
 
 export default SelectedContact;

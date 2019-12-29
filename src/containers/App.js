@@ -1,5 +1,5 @@
 /* eslint-disable no-restricted-syntax */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Route, Switch } from 'react-router-dom';
 
 import GlobalStyle from '../styles/GlobalStyles';
@@ -7,71 +7,33 @@ import Container from '../styles/Container';
 import Home from '../components/Home';
 import AddContact from '../components/AddContact';
 import EditContact from '../components/EditContact';
+import About from '../components/About';
+
 
 const App = () => {
   // STATES
-  const [contacts, setContacts] = useState([
-    {
-      firstname: 'John',
-      lastname: 'Doe',
-      middlename: 'Jack',
-      phoneNo: '+2348034545453',
-      emailAddress: 'sly@gmail.com',
-      nickname: 'Sly',
-      homeAddress: '21, Jump Street',
-      officeAddress: '23, Jump Street',
-      facebook: 'https://www.facebook.com/johnDoe',
-      twitter: 'twitter.com/johndoe',
-      linkedIn: 'linkedin.com/johndoe',
-      relationship: 'Best Friend',
-    },
-    {
-      firstname: 'Andrew',
-      lastname: 'Mead',
-      middlename: 'Nibble',
-      phoneNo: '+12343001939313',
-      emailAddress: 'ziko@gmail.com',
-      nickname: 'Ziko',
-      homeAddress: '441, eel road, massachussets',
-      officeAddress: '321, zippo street, New York',
-      facebook: 'https://www.facebook.com/andrewmead',
-      twitter: 'twitter.com/meadandrew',
-      linkedIn: 'linkedin.com/meadandrew',
-      relationship: 'Instructor',
-    },
-    {
-      firstname: 'Jane',
-      lastname: 'Doe',
-      middlename: 'Angela',
-      phoneNo: '+1-31342452452452',
-      nickname: 'SweetiePie',
-      emailAddress: 'angela@gmail.com',
-      homeAddress: '33, Anderson street, Boston',
-      officeAddress: '23, Zoey road, main building, Manchester',
-      facebook: 'https://www.facebook.com/janedoe',
-      twitter: 'twitter.com/doejane',
-      linkedIn: 'linkedin.com/doejane',
-      relationship: 'GirlFriend',
-    },
-  ]);
+  const [contacts, setContacts] = useState([]);
   const [selectedContact, setSelectedContact] = useState(contacts[0]);
 
   const [searchValue, setSearchValue] = useState('');
 
   const [searchedContact, setSearchedContact] = useState([]);
 
-  // const [flashMessage, setFlashMessage] = useState(null);
-  
-  // Fetch contacts data from localStorage
-  const localStorageContacts = () => {
-    let localContacts;
-    if (localStorage.getItem('contacts') === null) {
-      localContacts = [];
-    } else {
-      localContacts = JSON.parse(localStorage.getItem('contacts'));
+
+  useEffect(() => {
+    const previousContacts = JSON.parse(localStorage.getItem('contacts'));
+    if (previousContacts === null) {
+      setContacts([]);
     }
-    setContacts(localContacts);
-  };
+    setContacts(previousContacts);
+    
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('contacts', JSON.stringify(contacts));
+    setSelectedContact(contacts[0]);
+  }, [contacts]);
+
 
   // EVENT HANDLERS
   const selectedContactHandler = contactId => {
@@ -99,14 +61,18 @@ const App = () => {
           `${contact.firstname} ${contact.lastname}` ===
           `${formData.firstname} ${formData.lastname}`
         ) {
-          // setFlashMessage(`Contact "${formData.firstname} ${formData.lastname}" already exists!, Add a new contact`);
           return prevState;
         }
       }
       return [formData, ...prevState];
     });
     setSelectedContact(formData);
-    // setFlashMessage(`Contact "${formData.firstname} ${formData.lastname}" Added!`);
+  };
+
+  // clear all contacts
+  const clearAllContacts = () => {
+    localStorage.removeItem('contacts');
+    setContacts([]);
   };
 
   // RETURNED JSX
@@ -128,7 +94,7 @@ const App = () => {
             />
           )}
         />
-        <Route path="/about" exact render={() => <div>About</div>} />
+        <Route path="/about" exact render={() => <About clearAllContacts={clearAllContacts} />} />
         <Route
           path="/contact/new"
           exact

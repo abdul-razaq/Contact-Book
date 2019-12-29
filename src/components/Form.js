@@ -249,6 +249,7 @@ AddContactForm.propTypes = {
   linkedIn: PropTypes.string,
   relationship: PropTypes.string,
   history: PropTypes.object,
+  receiveFormData: PropTypes.func,
 };
 
 export default withRouter(AddContactForm);

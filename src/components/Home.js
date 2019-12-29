@@ -1,3 +1,4 @@
+/* eslint-disable react/require-default-props */
 /* eslint-disable react/forbid-prop-types */
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -46,7 +47,7 @@ const Home = ({
 Home.propTypes = {
   contacts: PropTypes.array.isRequired,
   contactHandlerCallback: PropTypes.func.isRequired,
-  selectedContact: PropTypes.object.isRequired,
+  selectedContact: PropTypes.object,
   onSearchInputHandler: PropTypes.func.isRequired,
   searchValue: PropTypes.string.isRequired,
   searchedContact: PropTypes.array.isRequired
