@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import StyledSelectedContact from '../styles/StyledSelectedContact';
 import StyledButton from '../styles/StyledButton';
 
-const SelectedContact = ({ selectedContact }) => {
+const SelectedContact = ({ selectedContact, onDeleteContact }) => {
   const {
     facebook,
     firstname,
@@ -101,7 +101,7 @@ const SelectedContact = ({ selectedContact }) => {
       <Link to="/contact/edit">
         <StyledButton action="edit">edit</StyledButton>
       </Link>
-      <StyledButton action="delete">delete</StyledButton>
+      <StyledButton action="delete" onClick={onDeleteContact}>delete</StyledButton>
     </StyledSelectedContact>
   );
 

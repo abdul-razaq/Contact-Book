@@ -1,14 +1,15 @@
 /* eslint-disable no-restricted-syntax */
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 import { Route, Switch } from 'react-router-dom';
 
 import GlobalStyle from '../styles/GlobalStyles';
 import Container from '../styles/Container';
 import Home from '../components/Home';
-import AddContact from '../components/AddContact';
-import EditContact from '../components/EditContact';
-import About from '../components/About';
 
+// Lazy loaded components
+const About = React.lazy(() => import('../components/About'));
+const AddContact = React.lazy(() => import('../components/AddContact'));
+const EditContact = React.lazy(() => import('../components/EditContact'));
 
 const App = () => {
   // STATES
@@ -19,21 +20,18 @@ const App = () => {
 
   const [searchedContact, setSearchedContact] = useState([]);
 
-
   useEffect(() => {
     const previousContacts = JSON.parse(localStorage.getItem('contacts'));
     if (previousContacts === null) {
       setContacts([]);
     }
     setContacts(previousContacts);
-    
   }, []);
 
   useEffect(() => {
     localStorage.setItem('contacts', JSON.stringify(contacts));
     setSelectedContact(contacts[0]);
   }, [contacts]);
-
 
   // EVENT HANDLERS
   const selectedContactHandler = contactId => {
@@ -53,7 +51,6 @@ const App = () => {
     setSearchedContact(matchedContact);
   };
 
-  // TODO: Add FlashMessage logic e.g "Contact Added!"
   const receiveFormData = formData => {
     setContacts(prevState => {
       for (const contact of prevState) {
@@ -69,6 +66,43 @@ const App = () => {
     setSelectedContact(formData);
   };
 
+  // Updating existing contact
+  const updateContactWithFormData = formData => {
+    const currentContacts = JSON.parse(localStorage.getItem('contacts'));
+    let stateContacts = contacts;
+    for (const contact of currentContacts) {
+      if (
+        `${contact.firstname} ${contact.lastname}` ===
+        `${formData.firstname} ${formData.lastname}`
+      ) {
+        stateContacts = stateContacts.splice(
+          currentContacts.indexOf(contact),
+          1,
+          formData
+        );
+        setContacts(stateContacts);
+      }
+    }
+  };
+
+  // TODO: use 'filter' Array method for delete contact logic
+  const deleteContact = () => {
+    // setContacts(prevContacts => {
+    //   prevContacts.filter(contact => `${contact.firstname} ${contact.lastname}` === `${selectedContact.firstname} ${selectedContact.lastname}`);
+    // });
+    const presentContact = JSON.parse(localStorage.getItem('contacts'));
+    const filteredContact = JSON.stringify(
+      presentContact.filter(
+        contact =>
+          `${contact.firstname} ${contact.lastname}` !==
+          `${selectedContact.firstname} ${selectedContact.lastname}`
+      )
+    );
+    setContacts(filteredContact);
+    localStorage.setItem('contacts', filteredContact);
+    console.log(filteredContact);
+  };
+
   // clear all contacts
   const clearAllContacts = () => {
     localStorage.removeItem('contacts');
@@ -79,29 +113,46 @@ const App = () => {
   return (
     <Container>
       <GlobalStyle />
-      <Switch>
-        <Route
-          path="/"
-          exact
-          render={() => (
-            <Home
-              searchedContact={searchedContact}
-              contacts={contacts}
-              contactHandlerCallback={selectedContactHandler}
-              selectedContact={selectedContact}
-              onSearchInputHandler={onSearchInputHandler}
-              searchValue={searchValue}
-            />
-          )}
-        />
-        <Route path="/about" exact render={() => <About clearAllContacts={clearAllContacts} />} />
-        <Route
-          path="/contact/new"
-          exact
-          render={() => <AddContact receiveFormData={receiveFormData} />}
-        />
-        <Route path="/contact/edit" exact component={EditContact} />
-      </Switch>
+      <Suspense fallback={<div>Loading...</div>}>
+        <Switch>
+          <Route
+            path="/"
+            exact
+            render={() => (
+              <Home
+                searchedContact={searchedContact}
+                contacts={contacts}
+                contactHandlerCallback={selectedContactHandler}
+                selectedContact={selectedContact}
+                onSearchInputHandler={onSearchInputHandler}
+                onDeleteContact={deleteContact}
+                searchValue={searchValue}
+              />
+            )}
+          />
+
+          <Route
+            path="/about"
+            exact
+            render={() => <About clearAllContacts={clearAllContacts} />}
+          />
+          <Route
+            path="/contact/new"
+            exact
+            render={() => <AddContact receiveFormData={receiveFormData} />}
+          />
+          <Route
+            path="/contact/edit"
+            exact
+            render={() => (
+              <EditContact
+                selectedContact={selectedContact}
+                updateContact={updateContactWithFormData}
+              />
+            )}
+          />
+        </Switch>
+      </Suspense>
     </Container>
   );
 };

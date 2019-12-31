@@ -16,22 +16,21 @@ import StyledForm, {
   StyledFormButton,
 } from '../styles/StyledForm';
 
-const AddContactForm = ({
-  firstname,
-  lastname,
-  middlename,
-  nickname,
-  phoneNo,
-  emailAddress,
-  homeAddress,
-  officeAddress,
-  facebook,
-  twitter,
-  linkedIn,
-  relationship,
-  history,
-  receiveFormData,
-}) => {
+const Form = ({ history, receiveFormData, selectedContact }) => {
+  const {
+    firstname,
+    lastname,
+    middlename,
+    nickname,
+    phoneNo,
+    emailAddress,
+    homeAddress,
+    officeAddress,
+    facebook,
+    twitter,
+    linkedIn,
+    relationship,
+  } = selectedContact;
   return (
     <Formik
       initialValues={{
@@ -228,14 +227,13 @@ const AddContactForm = ({
           </Link>
           <Button name="submit" type="submit" />
         </StyledFormButton>
-      
       </StyledForm>
     </Formik>
   );
 };
 
 // PropTypes
-AddContactForm.propTypes = {
+Form.propTypes = {
   firstname: PropTypes.string,
   lastname: PropTypes.string,
   middlename: PropTypes.string,
@@ -250,6 +248,7 @@ AddContactForm.propTypes = {
   relationship: PropTypes.string,
   history: PropTypes.object,
   receiveFormData: PropTypes.func,
+  selectedContact: PropTypes.object,
 };
 
-export default withRouter(AddContactForm);
+export default withRouter(Form);
