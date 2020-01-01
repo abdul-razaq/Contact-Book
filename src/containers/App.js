@@ -83,8 +83,8 @@ const App = () => {
           1,
           formData
         );
+        setContacts(presentContact);
       }
-      setContacts(presentContact);
     }
   };
 
