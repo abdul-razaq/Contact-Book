@@ -94,7 +94,6 @@ const App = () => {
 
   // delete all contacts
   const clearAllContacts = () => {
-    localStorage.removeItem('contacts');
     setContacts([]);
   };
 
