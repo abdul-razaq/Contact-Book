@@ -37,4 +37,4 @@ AllContacts.propTypes = {
   contactHandlerCallback: PropTypes.func,
 };
 
-export default AllContacts;
+export default React.memo(AllContacts);

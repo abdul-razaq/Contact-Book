@@ -119,4 +119,4 @@ SelectedContact.propTypes = {
   selectedContact: PropTypes.object,
 };
 
-export default SelectedContact;
+export default React.memo(SelectedContact);

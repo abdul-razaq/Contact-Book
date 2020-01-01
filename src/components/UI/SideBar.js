@@ -39,4 +39,4 @@ SideBar.propTypes = {
   searchedContact: PropTypes.array.isRequired,
 };
 
-export default SideBar;
+export default React.memo(SideBar);

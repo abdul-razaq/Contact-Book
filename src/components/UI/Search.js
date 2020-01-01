@@ -23,4 +23,4 @@ Search.propTypes = {
   searchValue: PropTypes.string,
 };
 
-export default Search;
+export default React.memo(Search);

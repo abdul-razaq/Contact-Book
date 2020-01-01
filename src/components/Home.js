@@ -15,44 +15,46 @@ const SelectedContact = React.lazy(() =>
   import('../components/SelectedContact')
 );
 
-const Home = ({
-  contacts,
-  contactHandlerCallback,
-  selectedContact,
-  onSearchInputHandler,
-  searchValue,
-  searchedContact,
-  onDeleteContact,
-}) => {
-  return (
-    <>
-      <Header />
-      <Suspense fallback={<div>Loading...</div>}>
-        <div style={{ marginTop: '4rem', marginLeft: '7rem' }}>
-          <Link to="/contact/new">
-            <Button action="add" name="Add new contact" />
-          </Link>
-        </div>
-        <StyledGrid>
-          <SideBar
-            searchedContact={searchedContact}
-            contacts={contacts}
-            contactHandlerCallback={contactHandlerCallback}
-            onSearchInputHandler={onSearchInputHandler}
-            searchValue={searchValue}
-          >
-            <Search />
-            <AllContacts />
-          </SideBar>
-          <SelectedContact
-            selectedContact={selectedContact}
-            onDeleteContact={onDeleteContact}
-          />
-        </StyledGrid>
-      </Suspense>
-    </>
-  );
-};
+const Home = React.memo(
+  ({
+    contacts,
+    contactHandlerCallback,
+    selectedContact,
+    onSearchInputHandler,
+    searchValue,
+    searchedContact,
+    onDeleteContact,
+  }) => {
+    return (
+      <>
+        <Header />
+        <Suspense fallback={<div>Loading...</div>}>
+          <div style={{ marginTop: '4rem', marginLeft: '7rem' }}>
+            <Link to="/contact/new">
+              <Button action="add" name="Add new contact" />
+            </Link>
+          </div>
+          <StyledGrid>
+            <SideBar
+              searchedContact={searchedContact}
+              contacts={contacts}
+              contactHandlerCallback={contactHandlerCallback}
+              onSearchInputHandler={onSearchInputHandler}
+              searchValue={searchValue}
+            >
+              <Search />
+              <AllContacts />
+            </SideBar>
+            <SelectedContact
+              selectedContact={selectedContact}
+              onDeleteContact={onDeleteContact}
+            />
+          </StyledGrid>
+        </Suspense>
+      </>
+    );
+  }
+);
 
 Home.propTypes = {
   contacts: PropTypes.array.isRequired,
