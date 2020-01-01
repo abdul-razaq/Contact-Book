@@ -8,29 +8,31 @@ import StyledSidebar from '../../styles/StyledSidebar';
 import StyledAllContacts from '../../styles/AllContacts';
 
 
-const SideBar = ({
-  contacts,
-  contactHandlerCallback,
-  onSearchInputHandler,
-  searchValue,
-  searchedContact
-}) => {
-  return (
-    <StyledSidebar>
-      <Search
-        onSearchInputHandler={onSearchInputHandler}
-        searchValue={searchValue}
-      />
-      <StyledAllContacts>
-        <AllContacts
-          searchedContact={searchedContact}
-          contacts={contacts}
-          contactHandlerCallback={contactHandlerCallback}
+const SideBar = React.memo(
+  ({
+    contacts,
+    contactHandlerCallback,
+    onSearchInputHandler,
+    searchValue,
+    searchedContact
+  }) => {
+    return (
+      <StyledSidebar>
+        <Search
+          onSearchInputHandler={onSearchInputHandler}
+          searchValue={searchValue}
         />
-      </StyledAllContacts>
-    </StyledSidebar>
-  );
-};
+        <StyledAllContacts>
+          <AllContacts
+            searchedContact={searchedContact}
+            contacts={contacts}
+            contactHandlerCallback={contactHandlerCallback}
+          />
+        </StyledAllContacts>
+      </StyledSidebar>
+    );
+  }
+);
 
 SideBar.propTypes = {
   contacts: PropTypes.array.isRequired,

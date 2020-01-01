@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import StyledSearch from '../../styles/StyledSearch';
 
-const Search = ({ onSearchInputHandler, searchValue }) => {
+const Search = React.memo(({ onSearchInputHandler, searchValue }) => {
   return (
     <>
       <StyledSearch
@@ -16,7 +16,7 @@ const Search = ({ onSearchInputHandler, searchValue }) => {
       />
     </>
   );
-};
+});
 
 Search.propTypes = {
   onSearchInputHandler: PropTypes.func,

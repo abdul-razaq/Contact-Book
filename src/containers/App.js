@@ -72,20 +72,19 @@ const App = () => {
 
   // Updating existing contact
   const updateContactWithFormData = formData => {
-    const currentContacts = JSON.parse(localStorage.getItem('contacts'));
-    let stateContacts = contacts;
-    for (const contact of currentContacts) {
+    let presentContact = JSON.parse(localStorage.getItem('contacts'));
+    for (const contact of presentContact) {
       if (
         `${contact.firstname} ${contact.lastname}` ===
         `${formData.firstname} ${formData.lastname}`
       ) {
-        stateContacts = stateContacts.splice(
-          currentContacts.indexOf(contact),
+        presentContact = presentContact.splice(
+          presentContact.indexOf(contact),
           1,
           formData
         );
-        setContacts(stateContacts);
       }
+      setContacts(presentContact);
     }
   };
 
