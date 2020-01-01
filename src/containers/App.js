@@ -6,7 +6,7 @@ import GlobalStyle from '../styles/GlobalStyles';
 import Container from '../styles/Container';
 import Home from '../components/Home';
 
-import createHistory from 'history/createBrowserHistory';
+// import createHistory from 'history/createBrowserHistory';
 
 // const history = createHistory();
 
