@@ -20,3 +20,8 @@ const app = (
   </BrowserRouter>
 );
 ReactDOM.render(app, document.querySelector('#root'));
+
+// Reload the application in the browser, without the browser refreshing the page.
+if (module.hot) {
+  module.hot.accept();
+}
