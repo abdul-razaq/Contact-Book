@@ -8,7 +8,7 @@ import Home from '../components/Home';
 
 import createHistory from 'history/createBrowserHistory';
 
-const history = createHistory();
+// const history = createHistory();
 
 // Lazy loaded components
 const About = React.lazy(() => import('../components/About'));
