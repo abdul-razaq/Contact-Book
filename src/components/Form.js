@@ -182,7 +182,7 @@ const Form = ({ history, receiveFormData, selectedContact }) => {
           as={StyledInput}
           name="facebook"
           type="text"
-          placeholder="e.g https://facebook.com/johndoe"
+          placeholder="e.g johndoe"
         />
         <StyledErrorMessage>
           <ErrorMessage name="facebook" />
@@ -193,7 +193,7 @@ const Form = ({ history, receiveFormData, selectedContact }) => {
           as={StyledInput}
           name="twitter"
           type="text"
-          placeholder="e.g https://twitter.com/johndoe"
+          placeholder="e.g @johndoe"
         />
         <StyledErrorMessage>
           <ErrorMessage name="twitter" />
@@ -204,7 +204,7 @@ const Form = ({ history, receiveFormData, selectedContact }) => {
           as={StyledInput}
           name="linkedIn"
           type="text"
-          placeholder="e.g https://linkedin.com/johndoe"
+          placeholder="e.g johndoe"
         />
         <StyledErrorMessage>
           <ErrorMessage name="linkedIn" />
