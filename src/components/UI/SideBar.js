@@ -7,32 +7,29 @@ import AllContacts from '../AllContacts';
 import StyledSidebar from '../../styles/StyledSidebar';
 import StyledAllContacts from '../../styles/AllContacts';
 
-
-const SideBar = React.memo(
-  ({
-    contacts,
-    contactHandlerCallback,
-    onSearchInputHandler,
-    searchValue,
-    searchedContact
-  }) => {
-    return (
-      <StyledSidebar>
-        <Search
-          onSearchInputHandler={onSearchInputHandler}
-          searchValue={searchValue}
+const SideBar = ({
+  contacts,
+  contactHandlerCallback,
+  onSearchInputHandler,
+  searchValue,
+  searchedContact,
+}) => {
+  return (
+    <StyledSidebar>
+      <Search
+        onSearchInputHandler={onSearchInputHandler}
+        searchValue={searchValue}
+      />
+      <StyledAllContacts>
+        <AllContacts
+          searchedContact={searchedContact}
+          contacts={contacts}
+          contactHandlerCallback={contactHandlerCallback}
         />
-        <StyledAllContacts>
-          <AllContacts
-            searchedContact={searchedContact}
-            contacts={contacts}
-            contactHandlerCallback={contactHandlerCallback}
-          />
-        </StyledAllContacts>
-      </StyledSidebar>
-    );
-  }
-);
+      </StyledAllContacts>
+    </StyledSidebar>
+  );
+};
 
 SideBar.propTypes = {
   contacts: PropTypes.array.isRequired,

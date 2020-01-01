@@ -7,7 +7,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const AllContacts = React.memo( ({ contacts, contactHandlerCallback, searchedContact }) => {
+const AllContacts = ({ contacts, contactHandlerCallback, searchedContact }) => {
   const selectedContact = contactId => {
     contactHandlerCallback(contactId);
   };
@@ -29,7 +29,7 @@ const AllContacts = React.memo( ({ contacts, contactHandlerCallback, searchedCon
       </p>
     );
   });
-});
+};
 
 AllContacts.propTypes = {
   searchedContact: PropTypes.array,

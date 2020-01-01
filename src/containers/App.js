@@ -73,19 +73,13 @@ const App = () => {
   // Updating existing contact
   const updateContactWithFormData = formData => {
     let presentContact = JSON.parse(localStorage.getItem('contacts'));
-    for (const contact of presentContact) {
-      if (
-        `${contact.firstname} ${contact.lastname}` ===
+    const filteredContact = presentContact.filter(
+      contact =>
+        `${contact.firstname} ${contact.lastname}` !==
         `${formData.firstname} ${formData.lastname}`
-      ) {
-        presentContact = presentContact.splice(
-          presentContact.indexOf(contact),
-          1,
-          formData
-        );
-        setContacts(presentContact);
-      }
-    }
+    );
+    const updatedContact = [formData, ...filteredContact];
+    setContacts(updatedContact);
   };
 
   const deleteContact = () => {
