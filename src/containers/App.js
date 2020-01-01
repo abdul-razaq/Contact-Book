@@ -6,6 +6,10 @@ import GlobalStyle from '../styles/GlobalStyles';
 import Container from '../styles/Container';
 import Home from '../components/Home';
 
+import createHistory from 'history/createBrowserHistory';
+
+const history = createHistory();
+
 // Lazy loaded components
 const About = React.lazy(() => import('../components/About'));
 const AddContact = React.lazy(() => import('../components/AddContact'));
@@ -85,25 +89,17 @@ const App = () => {
     }
   };
 
-  // TODO: use 'filter' Array method for delete contact logic
   const deleteContact = () => {
-    // setContacts(prevContacts => {
-    //   prevContacts.filter(contact => `${contact.firstname} ${contact.lastname}` === `${selectedContact.firstname} ${selectedContact.lastname}`);
-    // });
     const presentContact = JSON.parse(localStorage.getItem('contacts'));
-    const filteredContact = JSON.stringify(
-      presentContact.filter(
-        contact =>
-          `${contact.firstname} ${contact.lastname}` !==
-          `${selectedContact.firstname} ${selectedContact.lastname}`
-      )
+    const filteredContact = presentContact.filter(
+      contact =>
+        `${contact.firstname} ${contact.lastname}` !==
+        `${selectedContact.firstname} ${selectedContact.lastname}`
     );
     setContacts(filteredContact);
-    localStorage.setItem('contacts', filteredContact);
-    console.log(filteredContact);
   };
 
-  // clear all contacts
+  // delete all contacts
   const clearAllContacts = () => {
     localStorage.removeItem('contacts');
     setContacts([]);
