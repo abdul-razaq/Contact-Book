@@ -45,6 +45,7 @@ const App = () => {
     setSelectedContact(select[0]);
   };
 
+  // contact search functionality
   const onSearchInputHandler = searchInput => {
     setSearchValue(searchInput);
     const matchedContact = contacts.filter(
@@ -55,6 +56,7 @@ const App = () => {
     setSearchedContact(matchedContact);
   };
 
+  // Receive form data and add to previous contacts
   const receiveFormData = formData => {
     setContacts(prevState => {
       for (const contact of prevState) {
@@ -81,7 +83,8 @@ const App = () => {
     const updatedContact = [formData, ...filteredContact];
     setContacts(updatedContact);
   };
-
+  
+  // Delete a single contact
   const deleteContact = () => {
     const presentContact = JSON.parse(localStorage.getItem('contacts'));
     const filteredContact = presentContact.filter(
